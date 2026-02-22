@@ -2,6 +2,7 @@ import Image from "next/image";
 import CategoryMenu from "@/components/CategoryMenu";
 import CategorySection from "@/components/CategorySection";
 import { MenuResponse } from "@/lib/types";
+import styles from "./menu.module.css";
 
 export const dynamic = "force-dynamic";
 
@@ -18,20 +19,20 @@ export default async function HomePage() {
   const { settings, categories } = await getMenu();
 
   return (
-    <main className="public-theme">
-      <header className="hero">
-        <div className="hero-inner">
-          <div className={`status-pill ${settings.isOpen ? "open" : "closed"}`}>
+    <main className={styles.page}>
+      <header className={styles.hero}>
+        <div className={styles.heroInner}>
+          <div className={styles.statusPill}>
             {settings.isOpen ? "ABERTO" : "FECHADO"}
           </div>
         </div>
       </header>
 
-      <section className="store-card">
-        <div className="store-card-inner">
-          <div className="store-logo">
+      <section className={styles.storeCard}>
+        <div className={styles.storeInner}>
+          <div className={styles.storeLogo}>
             <Image
-              src="/dallas-logo.png"
+              src={settings.logoUrl || "/dallas-logo.png"}
               alt="Dallas Pizzaria"
               width={92}
               height={92}
@@ -39,9 +40,9 @@ export default async function HomePage() {
             />
           </div>
 
-          <div className="store-title">
-            <h1 className="store-name">{settings.storeName}</h1>
-            <div className="store-hours">{settings.openHoursText}</div>
+          <div className={styles.storeTitle}>
+            <h1 className={styles.storeName}>{settings.storeName}</h1>
+            <div className={styles.storeHours}>{settings.openHoursText}</div>
           </div>
 
           {categories.length > 0 && (
@@ -50,17 +51,17 @@ export default async function HomePage() {
             </div>
           )}
 
-          <div className="divider" />
+          <div className={styles.divider} />
 
           {categories.length === 0 ? (
-            <div className="muted">Nenhum item ativo no momento.</div>
+            <div style={{ color: "var(--muted)" }}>Nenhum item ativo no momento.</div>
           ) : (
             categories.map((cat) => (
               <CategorySection key={cat.id} category={cat} settings={settings} />
             ))
           )}
 
-          <div className="footer-note">
+          <div className={styles.footerNote}>
             Peça no WhatsApp e a gente confirma com você.
           </div>
         </div>

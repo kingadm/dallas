@@ -1,16 +1,19 @@
 :root{
-  /* Base neutra (Admin / site inteiro) */
   --bg: #fbf6ee;
   --paper: #ffffff;
   --text: #111827;
   --muted: #6b7280;
   --border: rgba(17,24,39,0.12);
-  --shadow: 0 14px 40px rgba(2,6,23,0.10);
+  --shadow: 0 16px 40px rgba(2,6,23,0.10);
 
   --tomato: #c0392b;
-  --basil: #1f7a3f;
-  --basil-weak: rgba(31, 122, 63, 0.12);
-  --tomato-weak: rgba(192, 57, 43, 0.10);
+  --tomato-weak: rgba(192,57,43,0.12);
+
+  --green: #1f7a3f;
+  --green-weak: rgba(31,122,63,0.12);
+
+  --wa: #16a34a;
+  --wa-weak: rgba(22,163,74,0.12);
 }
 
 *{ box-sizing: border-box; }
@@ -18,8 +21,10 @@ html,body{ padding:0; margin:0; }
 
 body{
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  background: var(--bg);
   color: var(--text);
+  background: radial-gradient(900px 600px at 15% 0%, rgba(192,57,43,0.06), transparent),
+              radial-gradient(900px 600px at 85% 10%, rgba(31,122,63,0.06), transparent),
+              var(--bg);
 }
 
 a{ color: inherit; text-decoration: none; }
@@ -39,10 +44,10 @@ a{ color: inherit; text-decoration: none; }
   box-shadow: var(--shadow);
 }
 
-.row{ display:flex; gap:16px; flex-wrap:wrap; }
+.row{ display:flex; gap:12px; flex-wrap:wrap; }
 .hr{ height:1px; background: var(--border); margin:16px 0; }
 
-.h1{ font-size: 30px; margin: 0 0 6px; font-weight: 900; }
+.h1{ font-size: 28px; margin: 0 0 6px; font-weight: 900; letter-spacing: -0.02em; }
 .h2{ font-size: 18px; margin: 0 0 12px; font-weight: 900; }
 .muted{ color: var(--muted); }
 .small{ font-size: 12px; }
@@ -56,32 +61,40 @@ a{ color: inherit; text-decoration: none; }
   border: 1px solid var(--border);
   background: rgba(2,6,23,0.03);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .badge-open{
   border-color: rgba(31,122,63,0.35);
-  background: var(--basil-weak);
+  background: var(--green-weak);
   color: #0f3d20;
 }
+
 .badge-closed{
   border-color: rgba(192,57,43,0.35);
   background: var(--tomato-weak);
   color: #5a1d16;
 }
 
-.input, .textarea, .select{
+/* inputs */
+.input, .select, .textarea{
   width:100%;
   border-radius: 12px;
   border: 1px solid var(--border);
-  background: rgba(2,6,23,0.02);
+  background: rgba(255,255,255,0.8);
   color: var(--text);
   padding: 10px 12px;
   outline: none;
 }
 
+.input:focus, .select:focus, .textarea:focus{
+  border-color: rgba(31,122,63,0.35);
+  box-shadow: 0 0 0 4px rgba(31,122,63,0.12);
+}
+
 .textarea{ min-height: 90px; resize: vertical; }
 
+/* buttons */
 .btn{
   display:inline-flex;
   align-items:center;
@@ -93,216 +106,34 @@ a{ color: inherit; text-decoration: none; }
   color: var(--text);
   padding: 10px 12px;
   cursor: pointer;
-  font-weight: 800;
+  font-weight: 900;
+  transition: transform 120ms ease, background 120ms ease;
 }
 
+.btn:hover{ transform: translateY(-1px); }
+.btn:active{ transform: translateY(0px); }
+
 .btn-primary{
-  background: rgba(192,57,43,0.10);
+  background: var(--tomato-weak);
   border-color: rgba(192,57,43,0.30);
   color: #5a1d16;
 }
 
 .btn-danger{
-  background: rgba(192,57,43,0.10);
+  background: var(--tomato-weak);
   border-color: rgba(192,57,43,0.30);
   color: #5a1d16;
 }
 
 .btn-whatsapp{
-  background: rgba(22,163,74,0.12);
+  background: var(--wa-weak);
   border-color: rgba(22,163,74,0.35);
   color: #0f3d20;
 }
 
-/* --------------------------
-   ✅ TEMA DO CARDÁPIO ISOLADO
-   tudo aqui só afeta elementos dentro de .public-theme
---------------------------- */
-
-.public-theme{
-  min-height: 100vh;
-  background: #f5f6f7;
-}
-
-/* topo verde (modelo) */
-.public-theme .hero{
-  background: linear-gradient(180deg, #1f7a3f 0%, #0f5f2b 100%);
-  height: 220px;
-  position: relative;
-}
-
-.public-theme .hero-inner{
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 18px 18px 0;
-}
-
-.public-theme .status-pill{
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 14px;
-  border-radius: 999px;
-  font-weight: 900;
-  letter-spacing: 0.02em;
-  font-size: 13px;
-  border: 1px solid rgba(255,255,255,0.35);
-  color: #0b2a14;
-  background: rgba(255,255,255,0.85);
-}
-
-/* card branco principal */
-.public-theme .store-card{
-  max-width: 980px;
-  margin: -110px auto 28px;
-  padding: 0 18px;
-}
-
-.public-theme .store-card-inner{
-  background: #ffffff;
-  border: 1px solid rgba(17,24,39,0.12);
-  border-radius: 22px;
-  box-shadow: 0 14px 40px rgba(2,6,23,0.10);
-  padding: 18px;
-  position: relative;
-}
-
-/* logo circular no topo do card */
-.public-theme .store-logo{
-  width: 110px;
-  height: 110px;
-  border-radius: 999px;
-  overflow: hidden;
-  background: #fff;
-  border: 6px solid #fff;
-  box-shadow: 0 12px 26px rgba(2,6,23,0.18);
-  margin: -70px auto 8px;
-  display: grid;
-  place-items: center;
-}
-
-.public-theme .store-title{
-  text-align: center;
-  margin-top: 6px;
-}
-
-.public-theme .store-name{
-  margin: 0;
-  font-size: 28px;
-  font-weight: 900;
-}
-
-.public-theme .store-hours{
-  margin-top: 4px;
-  color: #6b7280;
-  font-weight: 700;
-}
-
-.public-theme .divider{
-  height: 1px;
-  background: rgba(17,24,39,0.12);
-  margin: 16px 0;
-}
-
-.public-theme .footer-note{
-  margin-top: 16px;
-  color: #6b7280;
-  font-size: 12px;
-  text-align: center;
-}
-
-/* menu de categorias (pills) */
-.public-theme .cat-nav{
-  display:flex;
-  gap:10px;
-  overflow-x:auto;
-  padding: 6px 2px;
-}
-
-.public-theme .cat-pill{
-  white-space: nowrap;
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(17,24,39,0.12);
-  background: rgba(2,6,23,0.03);
-  font-weight: 900;
-  font-size: 14px;
-}
-
-/* título seção */
-.public-theme .section-title{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom: 10px;
-}
-.public-theme .section-dot{
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: #1f7a3f;
-  box-shadow: 0 0 0 4px rgba(31,122,63,0.14);
-}
-
-/* produto estilo lista */
-.public-theme .prod-card{
-  display:flex;
-  gap: 12px;
-  align-items: stretch;
-  border: 1px solid rgba(17,24,39,0.12);
-  background: #fff;
-  border-radius: 18px;
-  padding: 12px;
-  box-shadow: 0 10px 22px rgba(2,6,23,0.06);
-  margin-bottom: 12px;
-}
-
-.public-theme .prod-left{
-  flex: 1;
-  min-width: 0;
-  display:flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.public-theme .prod-name{
-  font-weight: 900;
-  font-size: 16px;
-}
-
-.public-theme .prod-desc{
-  color: #6b7280;
-  font-size: 13px;
-  line-height: 1.25rem;
-}
-
-.public-theme .prod-bottom{
-  margin-top: auto;
-  display:flex;
-  align-items:center;
-  justify-content: space-between;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.public-theme .prod-price{
-  font-size: 20px;
-  font-weight: 900;
-  color: #1f7a3f;
-}
-
-.public-theme .prod-right{
-  width: 110px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.public-theme .prod-img{
-  width: 96px;
-  height: 96px;
-  border-radius: 16px;
-  overflow:hidden;
-  border: 1px solid rgba(17,24,39,0.12);
-  position: relative;
-  background: #f3f4f6;
+/* grid usado em telas admin (lista) */
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
 }

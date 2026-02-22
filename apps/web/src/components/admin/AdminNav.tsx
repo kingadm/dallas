@@ -13,7 +13,9 @@ function NavLink({ href, label }: { href: string; label: string }) {
       href={href}
       className="btn"
       style={{
-        background: active ? "rgba(255,255,255,0.10)" : "rgba(255,255,255,0.06)"
+        borderRadius: 999,
+        padding: "10px 14px",
+        background: active ? "rgba(2,6,23,0.08)" : "rgba(2,6,23,0.03)"
       }}
     >
       {label}
@@ -32,10 +34,10 @@ export default function AdminNav() {
   return (
     <div className="row" style={{ alignItems: "center", justifyContent: "space-between" }}>
       <div className="row">
-        <NavLink href="/a9d3x-admin" label="Home" />
+        <NavLink href="/a9d3x-admin" label="Início" />
         <NavLink href="/a9d3x-admin/categories" label="Categorias" />
         <NavLink href="/a9d3x-admin/products" label="Produtos" />
-        <NavLink href="/a9d3x-admin/settings" label="Settings" />
+        <NavLink href="/a9d3x-admin/settings" label="Configurações" />
       </div>
 
       <button className="btn" onClick={logout}>

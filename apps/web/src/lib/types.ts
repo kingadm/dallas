@@ -5,6 +5,7 @@ export type Settings = {
   openHoursText: string;
   isOpen: boolean;
   messageTemplate: string;
+  logoUrl?: string | null; // ✅ NOVO
 };
 
 export type Category = {

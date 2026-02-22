@@ -34,4 +34,12 @@ export class SettingsService {
       }
     });
   }
+
+  async updateLogo(logoUrl: string) {
+    return this.prisma.settings.upsert({
+      where: { id: 1 },
+      update: { logoUrl },
+      create: { id: 1, logoUrl }
+    });
+  }
 }

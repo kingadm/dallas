@@ -45,6 +45,7 @@ model Settings {
   openHoursText    String   @default("Seg-Sex 09:00-18:00")
   isOpen           Boolean  @default(true)
   messageTemplate  String   @default("Olá! Quero pedir: {productName}")
+  logoUrl          String?  // ✅ NOVO (URL da logo no Cloudinary)
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }
