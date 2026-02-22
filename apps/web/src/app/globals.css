@@ -1,0 +1,241 @@
+:root {
+  /* Italian “parchment” base */
+  --bg: #fbf6ee;         /* creme suave */
+  --paper: #ffffff;      /* cards */
+  --text: #1f2937;       /* slate-800 */
+  --muted: #6b7280;      /* gray-500 */
+  --border: rgba(31, 41, 55, 0.10);
+
+  /* Italian accents */
+  --tomato: #c0392b;
+  --tomato-weak: rgba(192, 57, 43, 0.10);
+  --basil: #1f7a3f;
+  --basil-weak: rgba(31, 122, 63, 0.12);
+  --gold: #c2a56a;
+
+  --shadow: 0 16px 40px rgba(2, 6, 23, 0.10);
+}
+
+* { box-sizing: border-box; }
+html, body { padding: 0; margin: 0; }
+
+body {
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background:
+    radial-gradient(900px 600px at 15% 0%, rgba(192, 57, 43, 0.06), transparent),
+    radial-gradient(900px 600px at 85% 10%, rgba(31, 122, 63, 0.06), transparent),
+    linear-gradient(180deg, #fbf6ee 0%, #ffffff 40%, #fbf6ee 100%);
+}
+
+a { color: inherit; text-decoration: none; }
+
+.container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.row { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.hr { height: 1px; background: var(--border); margin: 16px 0; }
+
+.h1 {
+  font-size: 34px;
+  margin: 0 0 6px;
+  letter-spacing: -0.02em;
+}
+
+.h2 {
+  font-size: 20px;
+  margin: 0 0 12px;
+  letter-spacing: -0.01em;
+}
+
+.muted { color: var(--muted); }
+.small { font-size: 12px; }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(2, 6, 23, 0.03);
+  font-size: 12px;
+}
+
+.badge-open {
+  border-color: rgba(31, 122, 63, 0.35);
+  background: var(--basil-weak);
+  color: #0f3d20;
+}
+
+.badge-closed {
+  border-color: rgba(192, 57, 43, 0.35);
+  background: var(--tomato-weak);
+  color: #5a1d16;
+}
+
+.input, .textarea, .select {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(2, 6, 23, 0.02);
+  color: var(--text);
+  padding: 10px 12px;
+  outline: none;
+}
+
+.input:focus, .textarea:focus, .select:focus {
+  border-color: rgba(192, 57, 43, 0.35);
+  box-shadow: 0 0 0 4px rgba(192, 57, 43, 0.10);
+}
+
+.textarea { min-height: 90px; resize: vertical; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(2, 6, 23, 0.03);
+  color: var(--text);
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0px); }
+
+.btn-primary {
+  background: rgba(192, 57, 43, 0.10);
+  border-color: rgba(192, 57, 43, 0.30);
+  color: #5a1d16;
+}
+
+.btn-primary:hover {
+  background: rgba(192, 57, 43, 0.14);
+  border-color: rgba(192, 57, 43, 0.40);
+}
+
+.btn-whatsapp {
+  background: var(--basil-weak);
+  border-color: rgba(31, 122, 63, 0.35);
+  color: #0f3d20;
+}
+
+.btn-whatsapp:hover {
+  background: rgba(31, 122, 63, 0.16);
+  border-color: rgba(31, 122, 63, 0.45);
+}
+
+.btn-danger {
+  background: rgba(192, 57, 43, 0.10);
+  border-color: rgba(192, 57, 43, 0.30);
+  color: #5a1d16;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 14px;
+}
+
+/* Brand */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark{
+  width: 72px;
+  height: 72px;
+  border-radius: 999px; /* redondo */
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: 0 12px 24px rgba(2, 6, 23, 0.10);
+  background: transparent;
+}
+.brand-mark img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding: 0 !important;
+}
+
+/* Faixa Italia no topo do card */
+.menu-shell {
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-shell::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--basil) 0 33%, #ffffff 33% 66%, var(--tomato) 66% 100%);
+  border-bottom: 1px solid rgba(2, 6, 23, 0.06);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--gold);
+  box-shadow: 0 0 0 4px rgba(194, 165, 106, 0.18);
+}
+
+/* ✅ Menu horizontal de categorias (Pizzas | Bebidas | ...) */
+.cat-nav{
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 8px 2px;
+  scroll-behavior: smooth;
+}
+
+.cat-nav::-webkit-scrollbar{
+  height: 6px;
+}
+.cat-nav::-webkit-scrollbar-thumb{
+  background: rgba(2, 6, 23, 0.12);
+  border-radius: 999px;
+}
+
+.cat-pill{
+  white-space: nowrap;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(2, 6, 23, 0.03);
+  font-weight: 600;
+  font-size: 14px;
+  transition: transform 120ms ease, background 120ms ease;
+}
+
+.cat-pill:hover{
+  transform: translateY(-1px);
+  background: rgba(2, 6, 23, 0.05);
+}
