@@ -12,15 +12,19 @@ export default function AdminGuard({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const token = getToken();
+    const isLoginRoute = pathname === "/a9d3x-admin/login";
 
-    if (!token) {
-      router.replace("/a9d3x-admin/login");
+    // ✅ deixa o /login aparecer sempre
+    if (isLoginRoute) {
+      // se já tem token e entrou no login, manda pro painel
+      if (token) router.replace("/a9d3x-admin");
+      setReady(true);
       return;
     }
 
-    // se já tem token e está no login, manda pro admin
-    if (pathname === "/a9d3x-admin/login") {
-      router.replace("/a9d3x-admin");
+    // ✅ protege o resto
+    if (!token) {
+      router.replace("/a9d3x-admin/login");
       return;
     }
 
