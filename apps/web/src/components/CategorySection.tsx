@@ -9,19 +9,15 @@ export default function CategorySection({
   settings: Settings;
 }) {
   return (
-    <section id={`cat-${category.id}`} style={{ marginBottom: 22 }}>
-      <div className="section-title" style={{ marginBottom: 10 }}>
+    <section id={`cat-${category.id}`} style={{ marginBottom: 18 }}>
+      <div className="section-title">
         <span className="section-dot" aria-hidden />
-        <h2 className="h2" style={{ margin: 0 }}>
-          {category.name}
-        </h2>
+        <h2 className="h2" style={{ margin: 0 }}>{category.name}</h2>
       </div>
 
-      <div className="grid">
-        {category.products?.map((p) => (
-          <ProductCard key={p.id} product={p} settings={settings} />
-        ))}
-      </div>
+      {category.products?.map((p) => (
+        <ProductCard key={p.id} product={p} settings={settings} />
+      ))}
     </section>
   );
 }

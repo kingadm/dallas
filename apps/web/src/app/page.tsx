@@ -18,52 +18,53 @@ export default async function HomePage() {
   const { settings, categories } = await getMenu();
 
   return (
-    <main className="container">
-      <div className="card menu-shell">
-        <div
-          className="row"
-          style={{ alignItems: "center", justifyContent: "space-between", paddingTop: 6 }}
-        >
-          <div className="brand">
-            <div className="brand-mark" aria-hidden>
-              <Image
-                src="/dallas-logo.png"
-                alt="Dallas Pizzaria"
-                width={72}
-                height={72}
-                priority
-              />
-            </div>
-
-            <div>
-              <h1 className="h1">{settings.storeName}</h1>
-              <div className="muted">{settings.openHoursText}</div>
-            </div>
-          </div>
-
-          <div className={`badge ${settings.isOpen ? "badge-open" : "badge-closed"}`}>
-            <span>{settings.isOpen ? "Aberto" : "Fechado"}</span>
+    <main className="public-theme">
+      <header className="hero">
+        <div className="hero-inner">
+          <div className={`status-pill ${settings.isOpen ? "open" : "closed"}`}>
+            {settings.isOpen ? "ABERTO" : "FECHADO"}
           </div>
         </div>
+      </header>
 
-        <div className="hr" />
+      <section className="store-card">
+        <div className="store-card-inner">
+          <div className="store-logo">
+            <Image
+              src="/dallas-logo.png"
+              alt="Dallas Pizzaria"
+              width={92}
+              height={92}
+              priority
+            />
+          </div>
 
-        {/* ✅ MENU DE CATEGORIAS */}
-        {categories.length > 0 && <CategoryMenu categories={categories} />}
+          <div className="store-title">
+            <h1 className="store-name">{settings.storeName}</h1>
+            <div className="store-hours">{settings.openHoursText}</div>
+          </div>
 
-        <div className="hr" />
+          {categories.length > 0 && (
+            <div style={{ marginTop: 14 }}>
+              <CategoryMenu categories={categories} />
+            </div>
+          )}
 
-        {categories.length === 0 ? (
-          <div className="muted">Nenhum item ativo no momento.</div>
-        ) : (
-          categories.map((cat) => (
-            <CategorySection key={cat.id} category={cat} settings={settings} />
-          ))
-        )}
+          <div className="divider" />
 
-        <div className="hr" />
-        <div className="small muted">Peça pelo WhatsApp e a gente confirma com você.</div>
-      </div>
+          {categories.length === 0 ? (
+            <div className="muted">Nenhum item ativo no momento.</div>
+          ) : (
+            categories.map((cat) => (
+              <CategorySection key={cat.id} category={cat} settings={settings} />
+            ))
+          )}
+
+          <div className="footer-note">
+            Peça no WhatsApp e a gente confirma com você.
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

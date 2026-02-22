@@ -3,47 +3,45 @@ import { Product, Settings } from "@/lib/types";
 import { formatBRL } from "@/lib/format";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 
-export default function ProductCard({ product, settings }: { product: Product; settings: Settings }) {
-  const priceLabel = product.priceCents != null ? formatBRL(product.priceCents) : "Preço sob consulta";
+export default function ProductCard({
+  product,
+  settings
+}: {
+  product: Product;
+  settings: Settings;
+}) {
   const waLink = buildWhatsAppLink(settings, product);
+  const priceLabel =
+    product.priceCents != null ? formatBRL(product.priceCents) : "Preço sob consulta";
 
   return (
-    <article className="card" style={{ padding: 12 }}>
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          height: 160,
-          borderRadius: 14,
-          overflow: "hidden",
-          border: "1px solid var(--border)"
-        }}
-      >
-        <Image
-          src={product.imageUrl}
-          alt={product.name}
-          fill
-          sizes="(max-width: 600px) 100vw, 250px"
-          style={{ objectFit: "cover" }}
-        />
-      </div>
+    <article className="prod-card">
+      <div className="prod-left">
+        <div className="prod-name">{product.name}</div>
 
-      <div style={{ marginTop: 10 }}>
-        <div style={{ fontWeight: 800 }}>{product.name}</div>
         {product.description && (
-          <div className="muted small" style={{ marginTop: 4 }}>
-            {product.description}
-          </div>
+          <div className="prod-desc">{product.description}</div>
         )}
-        <div style={{ marginTop: 8 }}>
-          <span className="badge">{priceLabel}</span>
+
+        <div className="prod-bottom">
+          <div className="prod-price">{priceLabel}</div>
+
+          <a className="btn btn-whatsapp" href={waLink} target="_blank" rel="noreferrer">
+            Pedir no WhatsApp
+          </a>
         </div>
       </div>
 
-      <div style={{ marginTop: 12, display: "flex", gap: 10 }}>
-        <a className="btn btn-whatsapp" href={waLink} target="_blank" rel="noreferrer">
-          Pedir no WhatsApp
-        </a>
+      <div className="prod-right">
+        <div className="prod-img">
+          <Image
+            src={product.imageUrl}
+            alt={product.name}
+            fill
+            sizes="96px"
+            style={{ objectFit: "cover" }}
+          />
+        </div>
       </div>
     </article>
   );
