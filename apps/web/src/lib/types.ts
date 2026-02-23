@@ -5,7 +5,13 @@ export type Settings = {
   openHoursText: string;
   isOpen: boolean;
   messageTemplate: string;
-  logoUrl?: string | null; // ✅ NOVO
+  logoUrl?: string | null;
+
+  scheduleEnabled?: boolean;
+  openDays?: string | null;   // "1,2,3"
+  openTime?: string | null;   // "18:00"
+  closeTime?: string | null;  // "23:30"
+  timezone?: string | null;   // "America/Sao_Paulo"
 };
 
 export type Category = {
@@ -30,3 +36,4 @@ export type MenuResponse = {
   settings: Settings;
   categories: Category[];
 };
+

@@ -30,12 +30,10 @@ export class SettingsController {
     return this.service.update(dto);
   }
 
-  // ✅ upload da logo (protegido por JWT, porque não é Public)
   @Post("logo")
   @UseInterceptors(FileInterceptor("file", { limits: { fileSize: 5 * 1024 * 1024 } }))
   async uploadLogo(@UploadedFile() file?: Express.Multer.File) {
     if (!file?.buffer) throw new BadRequestException("Arquivo de logo é obrigatório");
-
     const uploaded = await this.cloudinary.uploadImage(file.buffer, "cardapio-logos");
     return this.service.updateLogo(uploaded.secure_url);
   }

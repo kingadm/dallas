@@ -43,9 +43,18 @@ model Settings {
   storeName        String   @default("Minha Loja")
   whatsappNumber   String   @default("55")
   openHoursText    String   @default("Seg-Sex 09:00-18:00")
-  isOpen           Boolean  @default(true)
+  isOpen           Boolean  @default(true) // manual (fallback)
   messageTemplate  String   @default("Olá! Quero pedir: {productName}")
-  logoUrl          String?  // ✅ NOVO (URL da logo no Cloudinary)
+
+  logoUrl          String?
+
+  // ✅ horário automático
+  scheduleEnabled  Boolean  @default(false)
+  openDays         String?  // ex: "1,2,3,4,5" (Seg-Sex) | 0=Dom ... 6=Sáb
+  openTime         String?  // "18:00"
+  closeTime        String?  // "23:30"
+  timezone         String   @default("America/Sao_Paulo")
+
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }
